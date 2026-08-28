@@ -25,4 +25,7 @@ def create_app(config_name='default'):
     def health_check():
         return {'status': 'ok', 'message': 'DataFlow Nexus API is running'}
 
+        # Import socket events
+    import app.monitoring.sockets
+
     return app
