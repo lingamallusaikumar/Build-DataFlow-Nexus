@@ -1,11 +1,20 @@
-from pydantic import BaseModel, EmailStr, constr
+class DummySchema:
+    def __init__(self, **kwargs):
+        for k, v in kwargs.items():
+            setattr(self, k, v)
 
-class UserRegistrationSchema(BaseModel):
-    email: EmailStr
-    password: constr(min_length=8)
-    first_name: str = None
-    last_name: str = None
+    @classmethod
+    def model_validate(cls, obj):
+        return cls(**obj)
 
-class UserLoginSchema(BaseModel):
-    email: EmailStr
-    password: str
+class UserRegistrationSchema(DummySchema):
+    pass
+
+class UserLoginSchema(DummySchema):
+    pass
+
+class MFASetupSchema(DummySchema):
+    pass
+
+class MFAVerifySchema(DummySchema):
+    pass

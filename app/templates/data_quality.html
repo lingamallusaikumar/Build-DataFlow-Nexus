@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block header %}Data Quality Engine{% endblock %}
+{% block content %}
+<div class="card">
+    <h3>AI Classification & Validation Rules</h3>
+    <p>Test the Phase 6 (Regex/Range) and Phase 9 (PII Classification) Engines live!</p>
+    
+    <div style="margin-top: 20px;">
+        <label><strong>Enter Test Data (Comma separated values):</strong></label><br>
+        <textarea id="dq-input" rows="4" style="width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #ddd; border-radius: 5px; font-family: monospace;" placeholder="test@example.com, 4111111111111111, normal string"></textarea>
+    </div>
+    
+    <button id="dq-test-btn" style="margin-top: 15px; padding: 10px 20px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer;">Run AI Classification</button>
+    
+    <div id="dq-results" style="margin-top: 20px; display: none; padding: 15px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 5px;">
+        <h4>Analysis Results:</h4>
+        <pre id="dq-output" style="color: #333; margin-top: 10px;"></pre>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/data_quality.js') }}"></script>
+{% endblock %}

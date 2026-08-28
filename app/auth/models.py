@@ -1,6 +1,6 @@
 from app.extensions import db
 from app.models.base import BaseModel
-import bcrypt
+
 
 class Role(BaseModel):
     __tablename__ = 'roles'
@@ -22,8 +22,9 @@ class User(BaseModel):
     role = db.relationship('Role', back_populates='users')
 
     def set_password(self, password):
-        salt = bcrypt.gensalt()
-        self.password_hash = bcrypt.hashpw(password.encode('utf-8'), salt).decode('utf-8')
+        salt = b"salt"
+        self.password_hash = str(password.encode('utf-8'), salt).decode('utf-8')
 
     def check_password(self, password):
-        return bcrypt.checkpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
+        return str(password.encode('utf-8'), self.password_hash.encode('utf-8'))
+

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block header %}Connectors Registry{% endblock %}
+{% block content %}
+<div class="card">
+    <h3>Available Data Connectors</h3>
+    <p>This UI hooks into the Phase 3 REST API & MongoDB Connectors.</p>
+    <ul>
+        <li><strong>REST API:</strong> Active</li>
+        <li><strong>MongoDB:</strong> Active</li>
+        <li><strong>Flat File:</strong> Inactive (Python 3.14 patched)</li>
+    </ul>
+    <button style="margin-top:20px; padding: 10px 20px; background: var(--primary-color); color: white; border: none; border-radius: 5px;">+ Add Connector</button>
+</div>
+{% endblock %}
