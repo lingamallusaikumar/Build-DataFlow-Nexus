@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - '5000:5000'
+    environment:
+      - FLASK_APP=app:create_app
+      - FLASK_ENV=development
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/dataflow_nexus
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=dev-secret-key
+      - JWT_SECRET_KEY=dev-jwt-secret
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=dataflow_nexus
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+
+  celery_worker:
+    build: .
+    command: celery -A app.extensions.celery_app worker --loglevel=info
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/dataflow_nexus
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - db
+      - redis
+      - web
+
+volumes:
+  postgres_data:
