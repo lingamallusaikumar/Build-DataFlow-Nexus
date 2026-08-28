@@ -18,6 +18,8 @@ def create_app(config_name='default'):
     # Register Blueprints
     from app.auth.routes import auth_bp
     app.register_blueprint(auth_bp, url_prefix='/api/v1/auth')
+    from app.organizations.routes import org_bp
+    app.register_blueprint(org_bp, url_prefix='/api/v1/organizations')
 
     @app.route('/health')
     def health_check():
