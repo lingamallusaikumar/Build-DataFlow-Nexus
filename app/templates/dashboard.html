@@ -6,23 +6,30 @@
 <div class="grid-3">
     <div class="card">
         <h3>Active Pipelines</h3>
-        <h1 style="font-size: 3rem; color: var(--primary-color);">12</h1>
+        <h1 id="metric-pipelines" style="font-size: 3rem; color: var(--primary-color);">Loading...</h1>
     </div>
     <div class="card">
-        <h3>Records Processed (24h)</h3>
-        <h1 style="font-size: 3rem; color: #10b981;">2.4M</h1>
+        <h3>Records / Second</h3>
+        <h1 id="metric-rps" style="font-size: 3rem; color: #10b981;">Loading...</h1>
     </div>
     <div class="card">
-        <h3>Failed Events</h3>
+        <h3>Failed Events (24h)</h3>
         <h1 style="font-size: 3rem; color: #ef4444;">14</h1>
     </div>
 </div>
 
-<div class="card">
-    <h3>System Health & Analytics</h3>
-    <p>Real-time metrics streaming via WebSockets...</p>
-    <div style="height: 200px; background: #f8fafc; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center;">
-        [ Chart Placeholder ]
+<div class="grid-3" style="margin-top: 20px;">
+    <div class="card">
+        <h3>Server CPU Usage</h3>
+        <h1 id="metric-cpu" style="font-size: 2.5rem; transition: color 0.3s;">--%</h1>
+    </div>
+    <div class="card">
+        <h3>Server RAM Usage</h3>
+        <h1 id="metric-ram" style="font-size: 2.5rem;">--%</h1>
+    </div>
+    <div class="card">
+        <h3>System Health</h3>
+        <p style="margin-top: 15px; font-size: 1.1rem;">All Systems Operational. Telemetry stream is active.</p>
     </div>
 </div>
 {% endblock %}
