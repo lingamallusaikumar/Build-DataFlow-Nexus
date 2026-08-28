@@ -28,4 +28,7 @@ def create_app(config_name='default'):
         # Import socket events
     import app.monitoring.sockets
 
+        from app.admin.routes import admin_bp
+    app.register_blueprint(admin_bp, url_prefix='/api/v1/admin')
+
     return app
