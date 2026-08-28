@@ -32,6 +32,12 @@ def create_app(config_name='default'):
     app.register_blueprint(frontend_bp)
 
     from app.admin.routes import admin_bp
+    from app.admin.health import health_bp
+    app.register_blueprint(health_bp, url_prefix='/health')
+    
+    from app.common.error_handlers import register_error_handlers
+    register_error_handlers(app)
+
     app.register_blueprint(admin_bp, url_prefix='/api/v1/admin')
 
     return app
