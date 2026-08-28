@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block header %}Overview Dashboard{% endblock %}
+
+{% block content %}
+<div class="grid-3">
+    <div class="card">
+        <h3>Active Pipelines</h3>
+        <h1 style="font-size: 3rem; color: var(--primary-color);">12</h1>
+    </div>
+    <div class="card">
+        <h3>Records Processed (24h)</h3>
+        <h1 style="font-size: 3rem; color: #10b981;">2.4M</h1>
+    </div>
+    <div class="card">
+        <h3>Failed Events</h3>
+        <h1 style="font-size: 3rem; color: #ef4444;">14</h1>
+    </div>
+</div>
+
+<div class="card">
+    <h3>System Health & Analytics</h3>
+    <p>Real-time metrics streaming via WebSockets...</p>
+    <div style="height: 200px; background: #f8fafc; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center;">
+        [ Chart Placeholder ]
+    </div>
+</div>
+{% endblock %}

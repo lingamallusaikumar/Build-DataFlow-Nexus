@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataFlow Nexus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="sidebar">
+            <div class="sidebar-logo">DataFlow Nexus</div>
+            <a href="/dashboard" class="nav-item">Dashboard</a>
+            <a href="/pipelines" class="nav-item">Pipelines</a>
+            <a href="/connectors" class="nav-item">Connectors</a>
+            <a href="/data-quality" class="nav-item">Data Quality</a>
+            <a href="/settings" class="nav-item">Settings</a>
+        </nav>
+        
+        <main class="main-content">
+            <header class="topbar">
+                <h2>{% block header %}{% endblock %}</h2>
+                <div>
+                    <span id="socket-status" style="color: red; font-size: 24px;">&#9679;</span>
+                    <button class="btn">Logout</button>
+                </div>
+            </header>
+            
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/sockets.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

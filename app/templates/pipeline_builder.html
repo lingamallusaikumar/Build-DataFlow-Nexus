@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block header %}Visual Pipeline Builder{% endblock %}
+
+{% block content %}
+<div class="card" style="margin-bottom: 15px;">
+    <button onclick="addNode('Source')" style="padding: 8px 15px; cursor: pointer;">+ Add Source</button>
+    <button onclick="addNode('Transform')" style="padding: 8px 15px; cursor: pointer;">+ Add Transform</button>
+    <button onclick="addNode('Destination')" style="padding: 8px 15px; cursor: pointer;">+ Add Destination</button>
+    <button onclick="addNode('AI Model')" style="padding: 8px 15px; cursor: pointer;">+ Add AI/ML</button>
+    
+    <button style="padding: 8px 15px; cursor: pointer; float: right; background: var(--primary-color); color: white; border: none; border-radius: 4px;">Save Pipeline</button>
+</div>
+
+<div id="pipeline-canvas">
+    <!-- Nodes will be injected here via JS -->
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/pipeline_builder.js') }}"></script>
+{% endblock %}
