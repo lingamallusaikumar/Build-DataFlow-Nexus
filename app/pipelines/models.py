@@ -21,3 +21,6 @@ class PipelineExecution(BaseModel):
     logs = db.Column(db.JSON, nullable=True)
     
     pipeline = db.relationship('Pipeline', back_populates='executions')
+
+# Import for alembic migrations
+from app.pipelines.versioning import PipelineVersion
