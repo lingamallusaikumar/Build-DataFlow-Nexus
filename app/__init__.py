@@ -18,26 +18,27 @@ def create_app(config_name='default'):
     # Register Blueprints
     from app.auth.routes import auth_bp
     app.register_blueprint(auth_bp, url_prefix='/api/v1/auth')
+    
     from app.organizations.routes import org_bp
     app.register_blueprint(org_bp, url_prefix='/api/v1/organizations')
 
-    @app.route('/health')
-    def health_check():
-        return {'status': 'ok', 'message': 'DataFlow Nexus API is running'}
-
-        # Import socket events
-    import app.monitoring.sockets
-
-        from app.frontend_routes import frontend_bp
+    from app.frontend_routes import frontend_bp
     app.register_blueprint(frontend_bp)
 
     from app.admin.routes import admin_bp
+    app.register_blueprint(admin_bp, url_prefix='/api/v1/admin')
+
     from app.admin.health import health_bp
     app.register_blueprint(health_bp, url_prefix='/health')
     
     from app.common.error_handlers import register_error_handlers
     register_error_handlers(app)
 
-    app.register_blueprint(admin_bp, url_prefix='/api/v1/admin')
+    @app.route('/health_check')
+    def health_check():
+        return {'status': 'ok', 'message': 'DataFlow Nexus API is running'}
+
+    # Import socket events
+    import app.monitoring.sockets
 
     return app
