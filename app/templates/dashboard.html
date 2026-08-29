@@ -4,32 +4,83 @@
 
 {% block content %}
 <div class="grid-3">
-    <div class="card">
-        <h3>Active Pipelines</h3>
-        <h1 id="metric-pipelines" style="font-size: 3rem; color: var(--primary-color);">Loading...</h1>
+    <div class="card" style="border-left: 4px solid var(--primary-color);">
+        <h3 style="margin-top: 0; color: var(--secondary-color);">Active Pipelines</h3>
+        <h1 id="metric-pipelines" style="font-size: 3rem; color: var(--primary-color); margin: 10px 0;">3</h1>
+        <p style="color: #64748b; margin-bottom: 0;">+1 since last week</p>
     </div>
-    <div class="card">
-        <h3>Records / Second</h3>
-        <h1 id="metric-rps" style="font-size: 3rem; color: #10b981;">Loading...</h1>
+    <div class="card" style="border-left: 4px solid #10b981;">
+        <h3 style="margin-top: 0; color: var(--secondary-color);">Records / Second</h3>
+        <h1 id="metric-rps" style="font-size: 3rem; color: #10b981; margin: 10px 0;">1,245</h1>
+        <p style="color: #64748b; margin-bottom: 0;">System processing speed</p>
     </div>
-    <div class="card">
-        <h3>Failed Events (24h)</h3>
-        <h1 style="font-size: 3rem; color: #ef4444;">14</h1>
+    <div class="card" style="border-left: 4px solid #ef4444;">
+        <h3 style="margin-top: 0; color: var(--secondary-color);">Failed Events (24h)</h3>
+        <h1 style="font-size: 3rem; color: #ef4444; margin: 10px 0;">14</h1>
+        <p style="color: #64748b; margin-bottom: 0;">Requires attention</p>
     </div>
 </div>
 
 <div class="grid-3" style="margin-top: 20px;">
     <div class="card">
-        <h3>Server CPU Usage</h3>
-        <h1 id="metric-cpu" style="font-size: 2.5rem; transition: color 0.3s;">--%</h1>
+        <h3 style="margin-top: 0; color: var(--secondary-color);">Server CPU Usage</h3>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <h1 id="metric-cpu" style="font-size: 2.5rem; transition: color 0.3s; margin: 10px 0;">42%</h1>
+            <div style="flex: 1; height: 10px; background: #e2e8f0; border-radius: 5px; overflow: hidden;">
+                <div style="width: 42%; height: 100%; background: var(--primary-color);"></div>
+            </div>
+        </div>
     </div>
     <div class="card">
-        <h3>Server RAM Usage</h3>
-        <h1 id="metric-ram" style="font-size: 2.5rem;">--%</h1>
+        <h3 style="margin-top: 0; color: var(--secondary-color);">Server RAM Usage</h3>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <h1 id="metric-ram" style="font-size: 2.5rem; margin: 10px 0;">68%</h1>
+            <div style="flex: 1; height: 10px; background: #e2e8f0; border-radius: 5px; overflow: hidden;">
+                <div style="width: 68%; height: 100%; background: #f59e0b;"></div>
+            </div>
+        </div>
     </div>
     <div class="card">
-        <h3>System Health</h3>
-        <p style="margin-top: 15px; font-size: 1.1rem;">All Systems Operational. Telemetry stream is active.</p>
+        <h3 style="margin-top: 0; color: var(--secondary-color);">System Health</h3>
+        <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
+            <div style="width: 15px; height: 15px; background: #10b981; border-radius: 50%;"></div>
+            <span style="font-size: 1.1rem; font-weight: 500;">All Systems Operational</span>
+        </div>
+        <p style="margin-top: 10px; color: #64748b;">Telemetry stream is active and responding.</p>
     </div>
+</div>
+
+<div class="card" style="margin-top: 20px;">
+    <h3 style="margin-top: 0; color: var(--secondary-color); margin-bottom: 15px;">Recent Pipeline Activity</h3>
+    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr style="border-bottom: 2px solid #e2e8f0;">
+                <th style="padding: 12px; color: #64748b;">Pipeline Name</th>
+                <th style="padding: 12px; color: #64748b;">Status</th>
+                <th style="padding: 12px; color: #64748b;">Records Processed</th>
+                <th style="padding: 12px; color: #64748b;">Last Run</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+                <td style="padding: 12px; font-weight: 500;">Customer Data Sync</td>
+                <td style="padding: 12px;"><span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">Running</span></td>
+                <td style="padding: 12px;">4.2M</td>
+                <td style="padding: 12px; color: #64748b;">2 mins ago</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+                <td style="padding: 12px; font-weight: 500;">Salesforce Ingestion</td>
+                <td style="padding: 12px;"><span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">Running</span></td>
+                <td style="padding: 12px;">1.1M</td>
+                <td style="padding: 12px; color: #64748b;">5 mins ago</td>
+            </tr>
+            <tr>
+                <td style="padding: 12px; font-weight: 500;">Legacy DB Archive</td>
+                <td style="padding: 12px;"><span style="background: #fee2e2; color: #b91c1c; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold;">Failed</span></td>
+                <td style="padding: 12px;">850K</td>
+                <td style="padding: 12px; color: #64748b;">1 hour ago</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 {% endblock %}

@@ -3,17 +3,35 @@
 {% block header %}Visual Pipeline Builder{% endblock %}
 
 {% block content %}
-<div class="card" style="margin-bottom: 15px;">
-    <button onclick="addNode('Source')" style="padding: 8px 15px; cursor: pointer;">+ Add Source</button>
-    <button onclick="addNode('Transform')" style="padding: 8px 15px; cursor: pointer;">+ Add Transform</button>
-    <button onclick="addNode('Destination')" style="padding: 8px 15px; cursor: pointer;">+ Add Destination</button>
-    <button onclick="addNode('AI Model')" style="padding: 8px 15px; cursor: pointer;">+ Add AI/ML</button>
-    
-    <button style="padding: 8px 15px; cursor: pointer; float: right; background: var(--primary-color); color: white; border: none; border-radius: 4px;">Save Pipeline</button>
-</div>
+<div style="display: flex; gap: 20px; height: calc(100vh - 150px);">
+    <!-- Sidebar for components -->
+    <div class="card" style="width: 250px; margin-bottom: 0; display: flex; flex-direction: column; gap: 10px;">
+        <h3 style="margin-top: 0; color: var(--secondary-color); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Components</h3>
+        
+        <button onclick="addNode('Source')" style="padding: 12px; cursor: pointer; background: white; border: 1px solid #cbd5e1; border-radius: 6px; text-align: left; display: flex; align-items: center; gap: 10px; transition: 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#cbd5e1'">
+            <span style="font-size: 1.2rem;">📥</span> Data Source
+        </button>
+        <button onclick="addNode('Transform')" style="padding: 12px; cursor: pointer; background: white; border: 1px solid #cbd5e1; border-radius: 6px; text-align: left; display: flex; align-items: center; gap: 10px; transition: 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#cbd5e1'">
+            <span style="font-size: 1.2rem;">⚙️</span> Transformation
+        </button>
+        <button onclick="addNode('AI Model')" style="padding: 12px; cursor: pointer; background: white; border: 1px solid #cbd5e1; border-radius: 6px; text-align: left; display: flex; align-items: center; gap: 10px; transition: 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#cbd5e1'">
+            <span style="font-size: 1.2rem;">🧠</span> AI / ML Model
+        </button>
+        <button onclick="addNode('Destination')" style="padding: 12px; cursor: pointer; background: white; border: 1px solid #cbd5e1; border-radius: 6px; text-align: left; display: flex; align-items: center; gap: 10px; transition: 0.2s;" onmouseover="this.style.borderColor='var(--primary-color)'" onmouseout="this.style.borderColor='#cbd5e1'">
+            <span style="font-size: 1.2rem;">📤</span> Destination
+        </button>
+        
+        <div style="flex: 1;"></div>
+        <button style="padding: 12px; cursor: pointer; background: var(--primary-color); color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 1rem;">Save Pipeline</button>
+    </div>
 
-<div id="pipeline-canvas">
-    <!-- Nodes will be injected here via JS -->
+    <!-- Canvas -->
+    <div id="pipeline-canvas" style="flex: 1; height: 100%; border: 2px dashed #cbd5e1; border-radius: 8px; background-color: white; position: relative; overflow: hidden; background-image: radial-gradient(#e2e8f0 1px, transparent 1px); background-size: 20px 20px;">
+        <div style="position: absolute; top: 15px; left: 15px; color: #94a3b8; font-size: 0.9rem;">
+            Drag components here to build your pipeline. Connect nodes to define the data flow.
+        </div>
+        <!-- Nodes will be injected here via JS -->
+    </div>
 </div>
 {% endblock %}
 

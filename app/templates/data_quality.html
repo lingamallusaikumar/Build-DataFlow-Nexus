@@ -1,20 +1,48 @@
 {% extends "base.html" %}
 {% block header %}Data Quality Engine{% endblock %}
 {% block content %}
-<div class="card">
-    <h3>AI Classification & Validation Rules</h3>
-    <p>Test the Phase 6 (Regex/Range) and Phase 9 (PII Classification) Engines live!</p>
-    
-    <div style="margin-top: 20px;">
-        <label><strong>Enter Test Data (Comma separated values):</strong></label><br>
-        <textarea id="dq-input" rows="4" style="width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #ddd; border-radius: 5px; font-family: monospace;" placeholder="test@example.com, 4111111111111111, normal string"></textarea>
+
+<div style="display: flex; gap: 20px;">
+    <!-- Left Column: Settings -->
+    <div style="width: 300px; display: flex; flex-direction: column; gap: 15px;">
+        <div class="card" style="margin-bottom: 0;">
+            <h3 style="margin-top: 0; color: var(--secondary-color); font-size: 1rem; text-transform: uppercase;">Active Rulesets</h3>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <input type="checkbox" checked style="width: 16px; height: 16px; accent-color: var(--primary-color);"> PII Classification (AI)
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <input type="checkbox" checked style="width: 16px; height: 16px; accent-color: var(--primary-color);"> Regex Pattern Match
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <input type="checkbox" checked style="width: 16px; height: 16px; accent-color: var(--primary-color);"> Numeric Range Checks
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <input type="checkbox" checked style="width: 16px; height: 16px; accent-color: var(--primary-color);"> Null & Empty Checks
+                </label>
+            </div>
+            <button style="margin-top: 20px; width: 100%; padding: 8px; border: 1px solid var(--primary-color); background: transparent; color: var(--primary-color); border-radius: 4px; cursor: pointer;">Manage Rules</button>
+        </div>
     </div>
-    
-    <button id="dq-test-btn" style="margin-top: 15px; padding: 10px 20px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer;">Run AI Classification</button>
-    
-    <div id="dq-results" style="margin-top: 20px; display: none; padding: 15px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 5px;">
-        <h4>Analysis Results:</h4>
-        <pre id="dq-output" style="color: #333; margin-top: 10px;"></pre>
+
+    <!-- Right Column: Testing -->
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 15px;">
+        <div class="card" style="margin-bottom: 0;">
+            <h3 style="margin-top: 0; color: var(--secondary-color);">Live Data Profiler (Phase 6 & 9)</h3>
+            <p style="color: #64748b; margin-bottom: 15px;">Enter sample data to test the AI classifiers and validation engine.</p>
+            
+            <div style="margin-top: 15px;">
+                <label style="font-weight: 500;">Test Payload (Comma separated values):</label>
+                <textarea id="dq-input" rows="5" style="width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: monospace; font-size: 0.95rem; box-sizing: border-box;" placeholder="john.doe@example.com, 4111-2222-3333-4444, safe string, 192.168.1.1"></textarea>
+            </div>
+            
+            <button id="dq-test-btn" style="margin-top: 15px; padding: 10px 24px; background: var(--primary-color); color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">Run Profiler & Classification</button>
+        </div>
+
+        <div id="dq-results" style="display: none; padding: 20px; background: white; border: 1px solid #e2e8f0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <h3 style="margin-top: 0; color: var(--secondary-color); border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">Profiling Results</h3>
+            <pre id="dq-output" style="color: #0f172a; margin-top: 15px; background: #f8fafc; padding: 15px; border-radius: 6px; border: 1px solid #e2e8f0; overflow-x: auto; font-size: 0.9rem;"></pre>
+        </div>
     </div>
 </div>
 
