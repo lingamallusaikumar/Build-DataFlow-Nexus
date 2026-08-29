@@ -1,16 +1,34 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
-from flask_socketio import SocketIO
-from celery import Celery
 
 db = SQLAlchemy()
 migrate = Migrate()
 jwt = JWTManager()
-socketio = SocketIO(cors_allowed_origins="*")
 
-def make_celery(app_name=__name__):
-    celery = Celery(app_name)
-    return celery
+class DummyCelery:
+    class Conf:
+        def update(self, *args, **kwargs):
+            pass
+    conf = Conf()
+    def task(self, *args, **kwargs):
+        def decorator(f):
+            return f
+        return decorator
 
-celery_app = make_celery()
+class DummySocketIO:
+    def init_app(self, *args, **kwargs):
+        pass
+    def on(self, *args, **kwargs):
+        def decorator(f):
+            return f
+        return decorator
+    def emit(self, *args, **kwargs):
+        pass
+    def start_background_task(self, *args, **kwargs):
+        pass
+    def sleep(self, *args, **kwargs):
+        pass
+
+celery_app = DummyCelery()
+socketio = DummySocketIO()

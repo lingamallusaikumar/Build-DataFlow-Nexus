@@ -1,0 +1,21 @@
+import pytest
+from app.domain_models.organization import Organization
+
+def test_organization_creation():
+    instance = Organization()
+    assert instance.id is not None
+    assert instance.is_deleted is False
+    assert instance.version == 1
+
+def test_organization_to_dict():
+    instance = Organization()
+    d = instance.to_dict()
+    assert 'id' in d
+    assert 'created_at' in d
+    assert 'updated_at' in d
+
+def test_organization_soft_delete(mocker):
+    mocker.patch('app.extensions.db.session.commit')
+    instance = Organization()
+    instance.soft_delete()
+    assert instance.is_deleted is True

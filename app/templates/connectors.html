@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block header %}Connectors Registry{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <p style="color: var(--secondary-color); font-size: 1.1rem; margin: 0;">Manage your data sources and destinations. Phase 3 integrations are live.</p>
+    <button style="padding: 10px 20px; background: var(--primary-color); color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">+ Add Connector</button>
+</div>
+
+<div class="grid-3">
+    <!-- REST API Connector -->
+    <div class="card" style="display: flex; flex-direction: column; gap: 15px; border-top: 4px solid var(--primary-color);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="font-size: 2.5rem;">🌐</div>
+            <span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">Active</span>
+        </div>
+        <div>
+            <h3 style="margin: 0 0 5px 0;">REST API</h3>
+            <p style="color: #64748b; font-size: 0.9rem; margin: 0;">Generic HTTP REST client for JSON endpoints.</p>
+        </div>
+        <div style="margin-top: auto; padding-top: 15px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between;">
+            <span style="color: #64748b; font-size: 0.85rem;">2 instances</span>
+            <a href="#" style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem; font-weight: 500;">Configure</a>
+        </div>
+    </div>
+
+    <!-- MongoDB Connector -->
+    <div class="card" style="display: flex; flex-direction: column; gap: 15px; border-top: 4px solid #10b981;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="font-size: 2.5rem;">🍃</div>
+            <span style="background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">Active</span>
+        </div>
+        <div>
+            <h3 style="margin: 0 0 5px 0;">MongoDB</h3>
+            <p style="color: #64748b; font-size: 0.9rem; margin: 0;">NoSQL Document database connection.</p>
+        </div>
+        <div style="margin-top: auto; padding-top: 15px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between;">
+            <span style="color: #64748b; font-size: 0.85rem;">1 instance</span>
+            <a href="#" style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem; font-weight: 500;">Configure</a>
+        </div>
+    </div>
+
+    <!-- Flat File Connector -->
+    <div class="card" style="display: flex; flex-direction: column; gap: 15px; border-top: 4px solid #94a3b8; opacity: 0.8;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style="font-size: 2.5rem;">📄</div>
+            <span style="background: #f1f5f9; color: #64748b; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">Inactive</span>
+        </div>
+        <div>
+            <h3 style="margin: 0 0 5px 0;">Flat File</h3>
+            <p style="color: #64748b; font-size: 0.9rem; margin: 0;">CSV, JSONL, and Parquet local file ingestion (Python 3.14 patched).</p>
+        </div>
+        <div style="margin-top: auto; padding-top: 15px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between;">
+            <span style="color: #64748b; font-size: 0.85rem;">0 instances</span>
+            <a href="#" style="color: var(--primary-color); text-decoration: none; font-size: 0.9rem; font-weight: 500;">Enable</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

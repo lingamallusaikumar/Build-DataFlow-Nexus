@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block header %}Setting Management Portal{% endblock %}
+{% block content %}
+<div class="card" style="margin-bottom: 20px;">
+    <h3>Setting Overview</h3>
+    <p>Enterprise Dashboard for Setting administration.</p>
+    <button class="btn" style="background: var(--primary-color);" onclick="showCreateModal()">+ Create New Setting</button>
+    <button class="btn" style="background: #3b82f6;" onclick="exportData()">Export Data</button>
+</div>
+
+<div class="card">
+    <table style="width: 100%; border-collapse: collapse; margin-top: 15px;" id="settingTable">
+        <thead>
+            <tr style="border-bottom: 2px solid #ddd; text-align: left;">
+                <th>ID</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th>Version</th>
+                <th>Attribute 1</th>
+                <th>Attribute 2</th>
+                <th>Attribute 3</th>
+                <th>Attribute 4</th>
+                <th>Attribute 5</th>
+                <th>Attribute 6</th>
+                <th>Attribute 7</th>
+                <th>Attribute 8</th>
+                <th>Attribute 9</th>
+                <th>Attribute 10</th>
+                <th>Attribute 11</th>
+                <th>Attribute 12</th>
+                <th>Attribute 13</th>
+                <th>Attribute 14</th>
+                <th>Attribute 15</th>
+                <th>Attribute 16</th>
+                <th>Attribute 17</th>
+                <th>Attribute 18</th>
+                <th>Attribute 19</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Data populated by JS -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Scripts for Data Fetching -->
+<script>
+    async function loadData() {
+        try {
+            const response = await fetch('/api/v2/settings/');
+            const data = await response.json();
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            data.forEach(item => {
+                let row = `<tr>
+                    <td>${item.id}</td>
+                    <td>${item.created_at}</td>
+                    <td>${item.updated_at}</td>
+                    <td>${item.version}</td>
+                    <td>${item.attribute_1 || '-'}</td>
+                    <td>${item.attribute_2 || '-'}</td>
+                    <td>${item.attribute_3 || '-'}</td>
+                    <td>${item.attribute_4 || '-'}</td>
+                    <td>${item.attribute_5 || '-'}</td>
+                    <td>${item.attribute_6 || '-'}</td>
+                    <td>${item.attribute_7 || '-'}</td>
+                    <td>${item.attribute_8 || '-'}</td>
+                    <td>${item.attribute_9 || '-'}</td>
+                    <td>${item.attribute_10 || '-'}</td>
+                    <td>${item.attribute_11 || '-'}</td>
+                    <td>${item.attribute_12 || '-'}</td>
+                    <td>${item.attribute_13 || '-'}</td>
+                    <td>${item.attribute_14 || '-'}</td>
+                    <td>${item.attribute_15 || '-'}</td>
+                    <td>${item.attribute_16 || '-'}</td>
+                    <td>${item.attribute_17 || '-'}</td>
+                    <td>${item.attribute_18 || '-'}</td>
+                    <td>${item.attribute_19 || '-'}</td>
+                    <td>
+                        <button onclick="editItem('${item.id}')">Edit</button>
+                        <button onclick="deleteItem('${item.id}')">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        } catch (e) {
+            console.error('Error fetching data', e);
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', loadData);
+</script>
+{% endblock %}
+
+

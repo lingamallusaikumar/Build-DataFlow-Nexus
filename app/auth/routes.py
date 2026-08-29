@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from pydantic import ValidationError
+
 from app.auth.schemas import UserRegistrationSchema, UserLoginSchema
 from app.auth.services import AuthService
 
@@ -9,7 +9,7 @@ auth_bp = Blueprint('auth', __name__)
 def register():
     try:
         data = UserRegistrationSchema(**request.get_json())
-    except ValidationError as e:
+    except Exception as e:
         return jsonify({"errors": e.errors()}), 400
 
     user, error = AuthService.register_user(data)
@@ -22,7 +22,7 @@ def register():
 def login():
     try:
         data = UserLoginSchema(**request.get_json())
-    except ValidationError as e:
+    except Exception as e:
         return jsonify({"errors": e.errors()}), 400
 
     tokens, error = AuthService.authenticate_user(data.email, data.password)
@@ -30,3 +30,4 @@ def login():
         return jsonify({"error": error}), 401
 
     return jsonify(tokens), 200
+
